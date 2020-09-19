@@ -1,2 +1,2 @@
 # preturn_ie
-Code for paper “Clinical Information Extraction for Preterm Birth Risk Prediction” (To be released soon)
+Code repo for paper “Clinical Information Extraction for Preterm Birth Risk Prediction” (Code is currently under review, for more information until release contact lucassterckx@gmail.com)
