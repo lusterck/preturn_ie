@@ -18,7 +18,7 @@ To use the repo create a virtual environment and call
 
     python3 -m venv .env
     source .env/bin/activate
-    pip install requirements.txt 
+    pip install .
 
 Generate embeddings and vocabulary
 
@@ -35,19 +35,19 @@ Generate UMLS inverted index vectors
 
 ## Train weakly supervised NER
 
-Weak training data is created by labeling unlabeled text using patterns stored in data/input/{lang}/entities.json
+Weak training data is created by labeling unlabeled text using patterns stored in data/input/patterns/entities.json
 
     python -m scripts.extract_features
 
 This stores the weakly supervised training data in files data/weak_supervision/{training,dev}_data.json
 A weakly supervised NER model can then be trained calling
 
-    python -m scripts.train_ner {lang} ./ data/input/training_data.json data/input/training_data.json -b models/preturn
+    python -m scripts.train_ner nl ./ data/input/training_data.json data/input/dev_data.json -b models/preturn
 
 
 ## Example
 
-To extract features from medical in the csv file and create a bew csv containing features, call
+To extract features from medical notes in data/input/corpus.csv and output a csv containing extracted features, call
 
     python -m scripts.extract_features
 
@@ -57,7 +57,7 @@ from preturn_ie import load_pipeline
 
 text_doc = ("2 maal 1000 mg Dafalgan")
 
-nlp = load_preturn_model(extract_features=extract_features, enable_linker=enable_linker)
+nlp = load_preturn_model(model_path='models/preturn')
 doc = nlp(text_doc)
 
 for feature in doc._.features:
